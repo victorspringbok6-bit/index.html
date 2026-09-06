@@ -5,39 +5,87 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rebel Roofers | Cork</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#17202a;background:#f5f3ee}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:#17202a;background:#f5f3ee}
+
 nav{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;background:#fff;position:sticky;top:0;z-index:100}
 .logo{font-size:22px;font-weight:900}.logo b{color:#c56b32}
 nav a{margin-left:22px;text-decoration:none;color:#17202a;font-weight:bold;transition:color 0.2s}
 nav a:hover{color:#c56b32}
-.hero{padding:90px 7%;background:#ddd7cc}.hero h1{font-size:70px;line-height:.9;margin:15px 0}
-.hero p{font-size:20px;max-width:600px;margin-bottom:25px}.btn{display:inline-block;padding:14px 20px;background:#c56b32;color:white;text-decoration:none;font-weight:bold;margin:10px 8px 0 0;border-radius:4px;transition:background 0.2s}
+
+.hero{padding:90px 7%;background:#ddd7cc}
+.hero h1{font-size:70px;line-height:.9;margin:15px 0}
+.hero p{font-size:20px;max-width:600px;margin-bottom:25px}
+.btn{display:inline-block;padding:14px 20px;background:#c56b32;color:white;text-decoration:none;font-weight:bold;margin:10px 8px 0 0;border-radius:4px;transition:background 0.2s}
 .btn:hover{background:#a45423}
-section{padding:65px 7%}h2{font-size:40px;margin-top:0}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
-.card{background:white;padding:25px;border:1px solid #ddd;border-radius:6px}.card h3{margin-top:0;margin-bottom:8px;color:#c56b32}
+
+section{padding:65px 7%}
+h2{font-size:40px;margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
 
 /* Interactive Card Styling */
+.card{background:white;padding:25px;border:1px solid #ddd;border-radius:6px}
+.card h3{margin-top:0;margin-bottom:8px;color:#c56b32}
 .card.interactive{cursor:pointer;position:relative;border:2px solid #c56b32;transition:transform 0.2s, box-shadow 0.2s}
 .card.interactive:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
 .click-hint{font-size:12px;color:#c56b32;font-weight:bold;margin-top:10px;display:inline-block}
 
-/* Modal Styling */
-.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;justify-content:center;align-items:center;padding:20px}
-.modal-overlay.active{display:flex}
-.modal-content{background:white;padding:30px;border-radius:8px;max-width:650px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
-.close-btn{position:absolute;top:15px;right:20px;font-size:28px;cursor:pointer;color:#888;font-weight:bold}
+/* Fixed Modal Overlay Styles */
+.modal-overlay{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.65);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.modal-overlay.active{
+  display:flex !important;
+}
+.modal-content{
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  max-width:650px;
+  width:100%;
+  position:relative;
+  max-height:90vh;
+  overflow-y:auto;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+.close-btn{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:28px;
+  cursor:pointer;
+  color:#888;
+  font-weight:bold;
+  line-height:1;
+}
 .close-btn:hover{color:#000}
 .sub-service-types{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}
 .type-box{background:#f9f8f6;padding:15px;border-radius:6px;border-left:3px solid #c56b32}
 .type-box h4{margin:0 0 8px 0;color:#17202a}
 .type-box p{margin:0;font-size:13px;line-height:1.4}
 
-.dark{background:#17202a;color:white}.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.box{border-top:2px solid #c56b32;padding-top:15px;line-height:1.5}.box b{font-size:18px;display:block;margin-bottom:5px}
-form{max-width:600px}input,select,textarea{width:100%;padding:13px;margin:7px 0 15px;border:1px solid #bbb;border-radius:4px;font-family:inherit}
+.dark{background:#17202a;color:white}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.box{border-top:2px solid #c56b32;padding-top:15px;line-height:1.5}
+.box b{font-size:18px;display:block;margin-bottom:5px}
+
+form{max-width:600px}
+input,select,textarea{width:100%;padding:13px;margin:7px 0 15px;border:1px solid #bbb;border-radius:4px;font-family:inherit}
 button{padding:14px 25px;background:#c56b32;color:white;border:0;font-weight:bold;border-radius:4px;cursor:pointer;transition:background 0.2s}
 button:hover{background:#a45423}
+
 footer{background:#111820;color:white;padding:35px 7%}
+
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:800px){.trust{grid-template-columns:1fr 1fr}.hero h1{font-size:50px}.sub-service-types{grid-template-columns:1fr}}
 @media(max-width:600px){.grid{grid-template-columns:1fr 1fr}}
@@ -47,56 +95,56 @@ footer{background:#111820;color:white;padding:35px 7%}
 <body>
 
 <nav>
-<div class="logo">REBEL <b>ROOFERS</b></div>
-<div><a href="#services">Services</a><a href="#work">Work</a><a href="#quote">Quote</a></div>
+  <div class="logo">REBEL <b>ROOFERS</b></div>
+  <div><a href="#services">Services</a><a href="#work">Work</a><a href="#quote">Quote</a></div>
 </nav>
 
 <header class="hero">
-<small>CORK • ROOFING & REPAIRS</small>
-<h1>ROOFING<br>DONE RIGHT.</h1>
-<p>Professional roofing repairs and maintenance across Cork.</p>
-<a class="btn" href="#quote">REQUEST A QUOTE</a>
-<a class="btn" href="#services" style="background:#17202a">OUR SERVICES</a>
+  <small>CORK • ROOFING & REPAIRS</small>
+  <h1>ROOFING<br>DONE RIGHT.</h1>
+  <p>Professional roofing repairs and maintenance across Cork.</p>
+  <a class="btn" href="#quote">REQUEST A QUOTE</a>
+  <a class="btn" href="#services" style="background:#17202a">OUR SERVICES</a>
 </header>
 
 <section id="services">
-<h2>Our Services</h2>
-<div class="grid">
-  <div class="card interactive" onclick="openModal('repairs')">
-    <h3>Roof Repairs</h3>
-    <p>Repairs and maintenance.</p>
-    <span class="click-hint">Click for options ➔</span>
-  </div>
+  <h2>Our Services</h2>
+  <div class="grid">
+    <div class="card interactive" onclick="openModal('repairs')">
+      <h3>Roof Repairs</h3>
+      <p>Repairs and maintenance.</p>
+      <span class="click-hint">Click for options ➔</span>
+    </div>
 
-  <div class="card interactive" onclick="openModal('flat')">
-    <h3>Flat Roofs</h3>
-    <p>Flat-roof work and repairs.</p>
-    <span class="click-hint">Click for options ➔</span>
-  </div>
+    <div class="card interactive" onclick="openModal('flat')">
+      <h3>Flat Roofs</h3>
+      <p>Flat-roof work and repairs.</p>
+      <span class="click-hint">Click for options ➔</span>
+    </div>
 
-  <div class="card interactive" onclick="openModal('gutters')">
-    <h3>Gutters</h3>
-    <p>Gutter repair and maintenance.</p>
-    <span class="click-hint">Click for options ➔</span>
-  </div>
+    <div class="card interactive" onclick="openModal('gutters')">
+      <h3>Gutters</h3>
+      <p>Gutter repair and maintenance.</p>
+      <span class="click-hint">Click for options ➔</span>
+    </div>
 
-  <div class="card interactive" onclick="openModal('chimneys')">
-    <h3>Chimneys</h3>
-    <p>Chimney repair work.</p>
-    <span class="click-hint">Click for options ➔</span>
-  </div>
+    <div class="card interactive" onclick="openModal('chimneys')">
+      <h3>Chimneys</h3>
+      <p>Chimney repair work.</p>
+      <span class="click-hint">Click for options ➔</span>
+    </div>
 
-  <div class="card interactive" onclick="openModal('fascia')">
-    <h3>Fascia & Soffit</h3>
-    <p>Repair and replacement.</p>
-    <span class="click-hint">Click for options ➔</span>
+    <div class="card interactive" onclick="openModal('fascia')">
+      <h3>Fascia & Soffit</h3>
+      <p>Repair and replacement.</p>
+      <span class="click-hint">Click for options ➔</span>
+    </div>
   </div>
-</div>
 </section>
 
 <div class="modal-overlay" id="serviceModal" onclick="closeModal(event)">
   <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="close-btn" onclick="closeModal(event)">&times;</span>
+    <span class="close-btn" onclick="forceCloseModal()">&times;</span>
     <h2 id="modalTitle" style="margin-bottom:10px;font-size:28px"></h2>
     <p id="modalDesc"></p>
     <div class="sub-service-types" id="modalGrid"></div>
@@ -104,38 +152,44 @@ footer{background:#111820;color:white;padding:35px 7%}
 </div>
 
 <section class="dark">
-<h2>Why Rebel Roofers?</h2>
-<div class="trust">
-<div class="box"><b>Experience</b>Practical roofing expertise.</div>
-<div class="box"><b>Safety</b>Safety-first working practices.</div>
-<div class="box"><b>Quality</b>Documented quality controls.</div>
-<div class="box"><b>Cork</b>Serving Cork & surrounding areas.</div>
-</div>
+  <h2>Why Rebel Roofers?</h2>
+  <div class="trust">
+    <div class="box"><b>Experience</b>Practical roofing expertise.</div>
+    <div class="box"><b>Safety</b>Safety-first working practices.</div>
+    <div class="box"><b>Quality</b>Documented quality controls.</div>
+    <div class="box"><b>Cork</b>Serving Cork & surrounding areas.</div>
+  </div>
 </section>
 
 <section id="work">
-<h2>Our Work</h2>
-<div class="grid" style="grid-template-columns: repeat(3, 1fr);">
-<div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">BEFORE / AFTER<br>Roof Repair</div>
-<div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">PROJECT<br>Flat Roof</div>
-<div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">PROJECT<br>Gutter Repair</div>
-</div>
+  <h2>Our Work</h2>
+  <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">BEFORE / AFTER<br>Roof Repair</div>
+    <div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">PROJECT<br>Flat Roof</div>
+    <div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">PROJECT<br>Gutter Repair</div>
+  </div>
 </section>
 
 <section id="quote">
-<h2>Request a Quote</h2>
-<form onsubmit="alert('DEMO: No information was sent.');return false">
-<input placeholder="Name" required>
-<input placeholder="Phone">
-<select><option>Roof Repair</option><option>Flat Roof</option><option>Gutter Repair</option><option>Chimney Repair</option><option>Fascia & Soffit</option></select>
-<textarea rows="4" placeholder="Tell us about the job"></textarea>
-<button type="submit">REQUEST QUOTE</button>
-</form>
+  <h2>Request a Quote</h2>
+  <form onsubmit="alert('DEMO: No information was sent.');return false">
+    <input placeholder="Name" required>
+    <input placeholder="Phone">
+    <select>
+      <option>Roof Repair</option>
+      <option>Flat Roof</option>
+      <option>Gutter Repair</option>
+      <option>Chimney Repair</option>
+      <option>Fascia & Soffit</option>
+    </select>
+    <textarea rows="4" placeholder="Tell us about the job"></textarea>
+    <button type="submit">REQUEST QUOTE</button>
+  </form>
 </section>
 
 <footer>
-<b>REBEL ROOFERS</b>
-<p style="margin-bottom:0;color:#aaa">Cork Roofing & Repairs • DEMO WEBSITE</p>
+  <b>REBEL ROOFERS</b>
+  <p style="margin-bottom:0;color:#aaa">Cork Roofing & Repairs • DEMO WEBSITE</p>
 </footer>
 
 <script>
@@ -152,4 +206,69 @@ const serviceData = {
   flat: {
     title: "Flat Roof Solutions",
     desc: "We offer three primary high-durability flat roofing systems:",
-    items:
+    items: [
+      { name: "Torch-On Felt", desc: "Affordable, traditional multi-layer bituminous felt system." },
+      { name: "EPDM Rubber", desc: "Long-lasting single-ply membrane with high weather resistance." },
+      { name: "GRP Fiberglass", desc: "Seamless, ultra-durable liquid glass fiber finish." }
+    ]
+  },
+  gutters: {
+    title: "Guttering Services",
+    desc: "Protect your home foundations and walls from water buildup:",
+    items: [
+      { name: "uPVC Gutters", desc: "Installation of durable, low-maintenance seamless uPVC systems." },
+      { name: "Clearing & Unblocking", desc: "Full removal of debris, moss, and blockages." },
+      { name: "Downpipes & Seating", desc: "Repairing leaking joints and misaligned downspouts." }
+    ]
+  },
+  chimneys: {
+    title: "Chimney Repair Services",
+    desc: "Structural and weatherproof maintenance for all chimney stacks:",
+    items: [
+      { name: "Flashing Repair", desc: "Lead flashing repairs to prevent water leaking around the stack base." },
+      { name: "Repointing", desc: "Restoring worn mortar joints and brickwork integrity." },
+      { name: "Cowls & Caps", desc: "Fitting protective caps to keep birds and rain out." }
+    ]
+  },
+  fascia: {
+    title: "Fascia & Soffit Work",
+    desc: "Protect the roofline edges and maintain attic ventilation:",
+    items: [
+      { name: "uPVC Cladding", desc: "Maintenance-free uPVC installation in modern style finishes." },
+      { name: "Rot Repair", desc: "Removal of water-damaged timber fascia boards." },
+      { name: "Vented Soffits", desc: "Ensuring healthy airflow to prevent dampness in the loft." }
+    ]
+  }
+};
+
+function openModal(key) {
+  const data = serviceData[key];
+  if (!data) return;
+
+  document.getElementById('modalTitle').innerText = data.title;
+  document.getElementById('modalDesc').innerText = data.desc;
+  
+  const grid = document.getElementById('modalGrid');
+  grid.innerHTML = data.items.map(item => `
+    <div class="type-box">
+      <h4>${item.name}</h4>
+      <p>${item.desc}</p>
+    </div>
+  `).join('');
+
+  document.getElementById('serviceModal').classList.add('active');
+}
+
+function closeModal(event) {
+  if (event.target.id === 'serviceModal') {
+    document.getElementById('serviceModal').classList.remove('active');
+  }
+}
+
+function forceCloseModal() {
+  document.getElementById('serviceModal').classList.remove('active');
+}
+</script>
+
+</body>
+</html>
