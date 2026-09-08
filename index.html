@@ -1,274 +1,605 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rebel Roofers | Cork</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#17202a;background:#f5f3ee}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PredictZ Clone - Football Predictions & Tips</title>
+  <style>
+    :root {
+      --bg-dark: #121820;
+      --bg-card: #1c2430;
+      --bg-header: #0f131a;
+      --accent-blue: #0073e6;
+      --accent-green: #28a745;
+      --accent-yellow: #f39c12;
+      --accent-red: #dc3545;
+      --text-main: #ffffff;
+      --text-muted: #a0aab8;
+      --border-color: #2a3545;
+    }
 
-nav{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;background:#fff;position:sticky;top:0;z-index:100}
-.logo{font-size:22px;font-weight:900}.logo b{color:#c56b32}
-nav a{margin-left:22px;text-decoration:none;color:#17202a;font-weight:bold;transition:color 0.2s}
-nav a:hover{color:#c56b32}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-.hero{padding:90px 7%;background:#ddd7cc}
-.hero h1{font-size:70px;line-height:.9;margin:15px 0}
-.hero p{font-size:20px;max-width:600px;margin-bottom:25px}
-.btn{display:inline-block;padding:14px 20px;background:#c56b32;color:white;text-decoration:none;font-weight:bold;margin:10px 8px 0 0;border-radius:4px;transition:background 0.2s}
-.btn:hover{background:#a45423}
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-section{padding:65px 7%}
-h2{font-size:40px;margin-top:0}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
+    /* Top Navigation Header */
+    header {
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-/* Interactive Card Styling */
-.card{background:white;padding:25px;border:1px solid #ddd;border-radius:6px}
-.card h3{margin-top:0;margin-bottom:8px;color:#c56b32}
-.card.interactive{cursor:pointer;position:relative;border:2px solid #c56b32;transition:transform 0.2s, box-shadow 0.2s}
-.card.interactive:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-.click-hint{font-size:12px;color:#c56b32;font-weight:bold;margin-top:10px;display:inline-block}
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-/* Fixed Modal Overlay Styles */
-.modal-overlay{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:rgba(0,0,0,0.65);
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-.modal-overlay.active{
-  display:flex !important;
-}
-.modal-content{
-  background:white;
-  padding:30px;
-  border-radius:8px;
-  max-width:650px;
-  width:100%;
-  position:relative;
-  max-height:90vh;
-  overflow-y:auto;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-.close-btn{
-  position:absolute;
-  top:15px;
-  right:20px;
-  font-size:28px;
-  cursor:pointer;
-  color:#888;
-  font-weight:bold;
-  line-height:1;
-}
-.close-btn:hover{color:#000}
-.sub-service-types{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}
-.type-box{background:#f9f8f6;padding:15px;border-radius:6px;border-left:3px solid #c56b32}
-.type-box h4{margin:0 0 8px 0;color:#17202a}
-.type-box p{margin:0;font-size:13px;line-height:1.4}
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+    }
 
-.dark{background:#17202a;color:white}
-.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.box{border-top:2px solid #c56b32;padding-top:15px;line-height:1.5}
-.box b{font-size:18px;display:block;margin-bottom:5px}
+    .logo span {
+      color: var(--accent-blue);
+    }
 
-form{max-width:600px}
-input,select,textarea{width:100%;padding:13px;margin:7px 0 15px;border:1px solid #bbb;border-radius:4px;font-family:inherit}
-button{padding:14px 25px;background:#c56b32;color:white;border:0;font-weight:bold;border-radius:4px;cursor:pointer;transition:background 0.2s}
-button:hover{background:#a45423}
+    .main-nav {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
 
-footer{background:#111820;color:white;padding:35px 7%}
+    .main-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
 
-@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:800px){.trust{grid-template-columns:1fr 1fr}.hero h1{font-size:50px}.sub-service-types{grid-template-columns:1fr}}
-@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.grid,.trust{grid-template-columns:1fr}nav a{display:none}}
-</style>
+    .main-nav a:hover, .main-nav a.active {
+      color: var(--text-main);
+    }
+
+    /* Sub-nav dates */
+    .date-bar {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 20px;
+    }
+
+    .date-nav {
+      display: flex;
+      gap: 10px;
+      max-width: 1400px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    .date-btn {
+      background: #253040;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .date-btn.active, .date-btn:hover {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+    }
+
+    /* Layout Wrapper */
+    .container {
+      display: grid;
+      grid-template-columns: 260px 1fr 280px;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 15px;
+      flex-grow: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      background: var(--bg-card);
+      border-radius: 6px;
+      padding: 15px;
+      height: fit-content;
+      border: 1px solid var(--border-color);
+    }
+
+    .sidebar h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-list {
+      list-style: none;
+    }
+
+    .sidebar-list li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-list a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: block;
+      padding: 6px 8px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .sidebar-list a:hover {
+      background: #273345;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-left: 4px solid var(--accent-blue);
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    .league-card {
+      background: var(--bg-card);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .league-header {
+      background: #253040;
+      padding: 10px 15px;
+      font-weight: 700;
+      font-size: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .match-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .match-table th, .match-table td {
+      padding: 10px 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .match-table th {
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .match-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .team-cell {
+      text-align: left !important;
+      font-weight: 600;
+      width: 35%;
+    }
+
+    .prediction-badge {
+      display: inline-block;
+      background: #2b394e;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #58a6ff;
+    }
+
+    .form-guide {
+      display: flex;
+      gap: 2px;
+      justify-content: center;
+    }
+
+    .form-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      font-size: 0.65rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .form-w { background-color: var(--accent-green); }
+    .form-d { background-color: var(--accent-yellow); }
+    .form-l { background-color: var(--accent-red); }
+
+    .odds-btn {
+      background: #101620;
+      border: 1px solid var(--border-color);
+      color: #4db2ff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .odds-btn:hover {
+      background: var(--accent-blue);
+      color: #fff;
+    }
+
+    /* Bet Slip Sidebar */
+    .betslip-box {
+      background: var(--bg-card);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      padding: 15px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .betslip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .betslip-count {
+      background: var(--accent-blue);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+    }
+
+    .betslip-empty {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .betslip-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+
+    .betslip-item {
+      background: #141a24;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cta-btn {
+      width: 100%;
+      background: var(--accent-green);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-header);
+      border-top: 1px solid var(--border-color);
+      padding: 25px 20px;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">REBEL <b>ROOFERS</b></div>
-  <div><a href="#services">Services</a><a href="#work">Work</a><a href="#quote">Quote</a></div>
-</nav>
-
-<header class="hero">
-  <small>CORK • ROOFING & REPAIRS</small>
-  <h1>ROOFING<br>DONE RIGHT.</h1>
-  <p>Professional roofing repairs and maintenance across Cork.</p>
-  <a class="btn" href="#quote">REQUEST A QUOTE</a>
-  <a class="btn" href="#services" style="background:#17202a">OUR SERVICES</a>
-</header>
-
-<section id="services">
-  <h2>Our Services</h2>
-  <div class="grid">
-    <div class="card interactive" onclick="openModal('repairs')">
-      <h3>Roof Repairs</h3>
-      <p>Repairs and maintenance.</p>
-      <span class="click-hint">Click for options ➔</span>
+  <header>
+    <div class="top-bar">
+      <a href="#" class="logo">PREDICT<span>Z</span></a>
+      <nav class="main-nav">
+        <a href="#" class="active">Predictions</a>
+        <a href="#">Results</a>
+        <a href="#">League Tables</a>
+        <a href="#">Statistics</a>
+        <a href="#">Form</a>
+        <a href="#">Bet Offers</a>
+        <a href="#">Today's Tips</a>
+        <a href="#">Tomorrow's Tips</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="card interactive" onclick="openModal('flat')">
-      <h3>Flat Roofs</h3>
-      <p>Flat-roof work and repairs.</p>
-      <span class="click-hint">Click for options ➔</span>
-    </div>
-
-    <div class="card interactive" onclick="openModal('gutters')">
-      <h3>Gutters</h3>
-      <p>Gutter repair and maintenance.</p>
-      <span class="click-hint">Click for options ➔</span>
-    </div>
-
-    <div class="card interactive" onclick="openModal('chimneys')">
-      <h3>Chimneys</h3>
-      <p>Chimney repair work.</p>
-      <span class="click-hint">Click for options ➔</span>
-    </div>
-
-    <div class="card interactive" onclick="openModal('fascia')">
-      <h3>Fascia & Soffit</h3>
-      <p>Repair and replacement.</p>
-      <span class="click-hint">Click for options ➔</span>
+  <div class="date-bar">
+    <div class="date-nav">
+      <button class="date-btn active">Today (Sep 8th)</button>
+      <button class="date-btn">Tomorrow (Sep 9th)</button>
+      <button class="date-btn">Thursday (Sep 10th)</button>
+      <button class="date-btn">Friday (Sep 11th)</button>
+      <button class="date-btn">Saturday (Sep 12th)</button>
     </div>
   </div>
-</section>
 
-<div class="modal-overlay" id="serviceModal" onclick="closeModal(event)">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="close-btn" onclick="forceCloseModal()">&times;</span>
-    <h2 id="modalTitle" style="margin-bottom:10px;font-size:28px"></h2>
-    <p id="modalDesc"></p>
-    <div class="sub-service-types" id="modalGrid"></div>
+  <div class="container">
+    
+    <!-- Sidebar: Top Leagues -->
+    <aside class="sidebar">
+      <h3>Top Competitions</h3>
+      <ul class="sidebar-list">
+        <li><a href="#">Champions League</a></li>
+        <li><a href="#">Europa League</a></li>
+        <li><a href="#">England Premier League</a></li>
+        <li><a href="#">Spain La Liga</a></li>
+        <li><a href="#">Germany Bundesliga</a></li>
+        <li><a href="#">Italy Serie A</a></li>
+        <li><a href="#">France Ligue 1</a></li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Popular Markets</h3>
+      <ul class="sidebar-list">
+        <li><a href="#">BTTS Tips</a></li>
+        <li><a href="#">Over 2.5 Goals Tips</a></li>
+        <li><a href="#">BTTS & Win Tips</a></li>
+        <li><a href="#">Correct Score Tips</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Predictions Column -->
+    <main class="main-content">
+      <h2 class="section-title">Football Predictions Today - Tuesday, Sep 8, 2026</h2>
+
+      <!-- Champions League Category -->
+      <section class="league-card">
+        <div class="league-header">Champions League Tips</div>
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Match</th>
+              <th>Form</th>
+              <th>Prediction</th>
+              <th>1</th>
+              <th>X</th>
+              <th>2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="team-cell">AEK Athens v LASK Linz</td>
+              <td>
+                <div class="form-guide">
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-d">D</span>
+                </div>
+              </td>
+              <td><span class="prediction-badge">Home 2-1</span></td>
+              <td><button class="odds-btn" onclick="addToSlip('AEK Athens vs LASK Linz', '1', 1.70)">1.70</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('AEK Athens vs LASK Linz', 'X', 4.10)">4.10</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('AEK Athens vs LASK Linz', '2', 4.50)">4.50</button></td>
+            </tr>
+            <tr>
+              <td class="team-cell">Club Brugge v Aston Villa</td>
+              <td>
+                <div class="form-guide">
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-l">L</span>
+                  <span class="form-dot form-l">L</span>
+                </div>
+              </td>
+              <td><span class="prediction-badge">Draw 1-1</span></td>
+              <td><button class="odds-btn" onclick="addToSlip('Club Brugge vs Aston Villa', '1', 2.55)">2.55</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Club Brugge vs Aston Villa', 'X', 3.60)">3.60</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Club Brugge vs Aston Villa', '2', 2.63)">2.63</button></td>
+            </tr>
+            <tr>
+              <td class="team-cell">Borussia Dortmund v Villarreal</td>
+              <td>
+                <div class="form-guide">
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-l">L</span>
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-w">W</span>
+                  <span class="form-dot form-w">W</span>
+                </div>
+              </td>
+              <td><span class="prediction-badge">Home 2-1</span></td>
+              <td><button class="odds-btn" onclick="addToSlip('Dortmund vs Villarreal', '1', 1.80)">1.80</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Dortmund vs Villarreal', 'X', 4.00)">4.00</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Dortmund vs Villarreal', '2', 4.00)">4.00</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- England EFL Cup Category -->
+      <section class="league-card">
+        <div class="league-header">England EFL Cup Tips</div>
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Match</th>
+              <th>Form</th>
+              <th>Prediction</th>
+              <th>1</th>
+              <th>X</th>
+              <th>2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="team-cell">Bournemouth v Lincoln City</td>
+              <td>
+                <div class="form-guide">
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-l">L</span>
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-d">D</span>
+                </div>
+              </td>
+              <td><span class="prediction-badge">Home 2-0</span></td>
+              <td><button class="odds-btn" onclick="addToSlip('Bournemouth vs Lincoln', '1', 1.22)">1.22</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Bournemouth vs Lincoln', 'X', 5.50)">5.50</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Bournemouth vs Lincoln', '2', 11.00)">11.00</button></td>
+            </tr>
+            <tr>
+              <td class="team-cell">Crystal Palace v Middlesbrough</td>
+              <td>
+                <div class="form-guide">
+                  <span class="form-dot form-d">D</span>
+                  <span class="form-dot form-l">L</span>
+                  <span class="form-dot form-l">L</span>
+                  <span class="form-dot form-l">L</span>
+                  <span class="form-dot form-w">W</span>
+                </div>
+              </td>
+              <td><span class="prediction-badge">Home 2-1</span></td>
+              <td><button class="odds-btn" onclick="addToSlip('Crystal Palace vs Boro', '1', 1.81)">1.81</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Crystal Palace vs Boro', 'X', 3.60)">3.60</button></td>
+              <td><button class="odds-btn" onclick="addToSlip('Crystal Palace vs Boro', '2', 3.90)">3.90</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Interactive Bet Slip -->
+    <aside class="betslip-box">
+      <div class="betslip-header">
+        <h3>Bet Slip</h3>
+        <span class="betslip-count" id="slipCount">0</span>
+      </div>
+      <div id="betslipItems" class="betslip-items">
+        <p class="betslip-empty" id="emptyMsg">Click odds to add selections</p>
+      </div>
+      <button class="cta-btn">Back It at bet365</button>
+    </aside>
+
   </div>
-</div>
 
-<section class="dark">
-  <h2>Why Rebel Roofers?</h2>
-  <div class="trust">
-    <div class="box"><b>Experience</b>Practical roofing expertise.</div>
-    <div class="box"><b>Safety</b>Safety-first working practices.</div>
-    <div class="box"><b>Quality</b>Documented quality controls.</div>
-    <div class="box"><b>Cork</b>Serving Cork & surrounding areas.</div>
-  </div>
-</section>
-
-<section id="work">
-  <h2>Our Work</h2>
-  <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
-    <div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">BEFORE / AFTER<br>Roof Repair</div>
-    <div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">PROJECT<br>Flat Roof</div>
-    <div class="card" style="background:#e0dbd1;min-height:160px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;">PROJECT<br>Gutter Repair</div>
-  </div>
-</section>
-
-<section id="quote">
-  <h2>Request a Quote</h2>
-  <form onsubmit="alert('DEMO: No information was sent.');return false">
-    <input placeholder="Name" required>
-    <input placeholder="Phone">
-    <select>
-      <option>Roof Repair</option>
-      <option>Flat Roof</option>
-      <option>Gutter Repair</option>
-      <option>Chimney Repair</option>
-      <option>Fascia & Soffit</option>
-    </select>
-    <textarea rows="4" placeholder="Tell us about the job"></textarea>
-    <button type="submit">REQUEST QUOTE</button>
-  </form>
-</section>
-
-<footer>
-  <b>REBEL ROOFERS</b>
-  <p style="margin-bottom:0;color:#aaa">Cork Roofing & Repairs • DEMO WEBSITE</p>
-</footer>
-
-<script>
-const serviceData = {
-  repairs: {
-    title: "Roof Repair Options",
-    desc: "We fix emergency leaks, missing materials, and general structural wear:",
-    items: [
-      { name: "Slate & Tile", desc: "Replacement of broken, slipped, or cracked roof tiles and slates." },
-      { name: "Ridge Tiles", desc: "Re-pointing and fixing loose or damaged roof ridge capping." },
-      { name: "Leak Detection", desc: "Fast identification and emergency repair of storm leaks." }
-    ]
-  },
-  flat: {
-    title: "Flat Roof Solutions",
-    desc: "We offer three primary high-durability flat roofing systems:",
-    items: [
-      { name: "Torch-On Felt", desc: "Affordable, traditional multi-layer bituminous felt system." },
-      { name: "EPDM Rubber", desc: "Long-lasting single-ply membrane with high weather resistance." },
-      { name: "GRP Fiberglass", desc: "Seamless, ultra-durable liquid glass fiber finish." }
-    ]
-  },
-  gutters: {
-    title: "Guttering Services",
-    desc: "Protect your home foundations and walls from water buildup:",
-    items: [
-      { name: "uPVC Gutters", desc: "Installation of durable, low-maintenance seamless uPVC systems." },
-      { name: "Clearing & Unblocking", desc: "Full removal of debris, moss, and blockages." },
-      { name: "Downpipes & Seating", desc: "Repairing leaking joints and misaligned downspouts." }
-    ]
-  },
-  chimneys: {
-    title: "Chimney Repair Services",
-    desc: "Structural and weatherproof maintenance for all chimney stacks:",
-    items: [
-      { name: "Flashing Repair", desc: "Lead flashing repairs to prevent water leaking around the stack base." },
-      { name: "Repointing", desc: "Restoring worn mortar joints and brickwork integrity." },
-      { name: "Cowls & Caps", desc: "Fitting protective caps to keep birds and rain out." }
-    ]
-  },
-  fascia: {
-    title: "Fascia & Soffit Work",
-    desc: "Protect the roofline edges and maintain attic ventilation:",
-    items: [
-      { name: "uPVC Cladding", desc: "Maintenance-free uPVC installation in modern style finishes." },
-      { name: "Rot Repair", desc: "Removal of water-damaged timber fascia boards." },
-      { name: "Vented Soffits", desc: "Ensuring healthy airflow to prevent dampness in the loft." }
-    ]
-  }
-};
-
-function openModal(key) {
-  const data = serviceData[key];
-  if (!data) return;
-
-  document.getElementById('modalTitle').innerText = data.title;
-  document.getElementById('modalDesc').innerText = data.desc;
-  
-  const grid = document.getElementById('modalGrid');
-  grid.innerHTML = data.items.map(item => `
-    <div class="type-box">
-      <h4>${item.name}</h4>
-      <p>${item.desc}</p>
+  <footer>
+    <div class="footer-links">
+      <a href="#">About</a> |
+      <a href="#">Responsible Gambling</a> |
+      <a href="#">Contact</a> |
+      <a href="#">Terms & Conditions</a> |
+      <a href="#">Privacy Policy</a>
     </div>
-  `).join('');
+    <p>© PredictZ 2026 | All odds subject to change. Gamble responsibly 18+</p>
+  </footer>
 
-  document.getElementById('serviceModal').classList.add('active');
-}
+  <script>
+    let betSlip = [];
 
-function closeModal(event) {
-  if (event.target.id === 'serviceModal') {
-    document.getElementById('serviceModal').classList.remove('active');
-  }
-}
+    function addToSlip(match, selection, odds) {
+      // Avoid duplicate selections for the same match
+      betSlip = betSlip.filter(item => item.match !== match);
+      
+      betSlip.push({ match, selection, odds });
+      renderBetSlip();
+    }
 
-function forceCloseModal() {
-  document.getElementById('serviceModal').classList.remove('active');
-}
-</script>
+    function renderBetSlip() {
+      const container = document.getElementById('betslipItems');
+      const countEl = document.getElementById('slipCount');
+      
+      countEl.innerText = betSlip.length;
 
+      if (betSlip.length === 0) {
+        container.innerHTML = '<p class="betslip-empty">Click odds to add selections</p>';
+        return;
+      }
+
+      container.innerHTML = betSlip.map((item, index) => `
+        <div class="betslip-item">
+          <div>
+            <strong>${item.match}</strong><br/>
+            <span style="color:var(--text-muted)">Pick: ${item.selection}</span>
+          </div>
+          <div style="font-weight:bold; color:var(--accent-blue)">${item.odds.toFixed(2)}</div>
+        </div>
+      `).join('');
+    }
+  </script>
 </body>
 </html>
