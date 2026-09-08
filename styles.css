@@ -574,3 +574,36 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* Card Layout & Logo Fixes */
+.team-logo {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.match-card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
