@@ -7,30 +7,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header class="app-header">
-    <div class="logo-container">
-      ⚽ <h1>ApexAnalytics</h1>
-      <span class="badge">DEMO</span>
+    <div class="logo">
+      ⚽ ApexAnalytics <span class="badge">LIVE API</span>
     </div>
-    <nav class="top-nav">
-      <a href="#" class="nav-link active" data-tab="predictions">Predictions</a>
-      <a href="#" class="nav-link" data-tab="todays-tips">Today's Tips</a>
-      <a href="#" class="nav-link" data-tab="tomorrows-tips">Tomorrow's Tips</a>
-      <a href="#" class="nav-link" data-tab="results">Results</a>
-      <a href="#" class="nav-link" data-tab="tables">League Tables</a>
-      <a href="#" class="nav-link" data-tab="stats">Statistics Engine</a>
-      <a href="#" class="nav-link" data-tab="form">Team Form</a>
-      <a href="#" class="nav-link" data-tab="about">About & Architecture</a>
+    <nav class="nav-links">
+      <button class="nav-tab active" data-view="predictions">Predictions</button>
+      <button class="nav-tab" data-view="results">Results</button>
+      <button class="nav-tab" data-view="league-tables">League Tables</button>
+      <button class="nav-tab" data-view="team-form">Team Form</button>
     </nav>
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search teams, competitions...">
-    </div>
   </header>
 
-  <main id="mainContent" class="main-layout">
+  <main id="main-content" class="container">
     <!-- Dynamic JS content renders here -->
   </main>
 
-  <script src="script.js"></script>
+  <!-- Loaded as ES Module to support module imports -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
