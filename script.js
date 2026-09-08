@@ -451,6 +451,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }));
 
     state.allMatches = [...liveMapped, ...matchesDatabase];
+
+    // Update top header status pill when live data is found
+    const statusBadge = document.querySelector('.badge') || document.querySelector('[class*="demo"]');
+    if (statusBadge) {
+      statusBadge.textContent = 'LIVE API';
+      statusBadge.style.backgroundColor = '#10B981';
+    }
   }
 
   // Initial render
