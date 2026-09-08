@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Analytics | Informational Football Intelligence & Predictions</title>
+    <meta name="description" content="Informational football predictions, statistics, form analysis, and match analytics.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header" role="banner">
+        <div class="top-bar">
+            <div class="brand">
+                <span class="logo-icon" aria-hidden="true">⚽</span>
+                <span class="brand-title">Apex<span class="highlight">Analytics</span></span>
+                <span class="data-tag demo-tag" id="dataStatusBadge">DEMO DATA</span>
+            </div>
+            
+            <div class="search-box-container" role="search">
+                <label for="globalSearchInput" class="sr-only">Search teams or competitions</label>
+                <input type="search" id="globalSearchInput" placeholder="Search teams, competitions..." aria-label="Search football data">
+                <button type="button" id="clearSearchBtn" class="clear-search-btn" aria-label="Clear Search" hidden>✕</button>
+            </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Main Navigation">
+            <button class="nav-link active" data-view="predictions" type="button">Predictions</button>
+            <button class="nav-link" data-view="todays-tips" type="button">Today's Tips</button>
+            <button class="nav-link" data-view="tomorrows-tips" type="button">Tomorrow's Tips</button>
+            <button class="nav-link" data-view="results" type="button">Results</button>
+            <button class="nav-link" data-view="tables" type="button">League Tables</button>
+            <button class="nav-link" data-view="statistics" type="button">Statistics Engine</button>
+            <button class="nav-link" data-view="form" type="button">Team Form</button>
+            <button class="nav-link" data-view="about" type="button">About & Architecture</button>
+        </nav>
+    </header>
+
+    <div class="subnav-container" id="subnavContainer">
+        <!-- Rendered dynamically by app.js -->
+    </div>
+
+    <main class="main-layout" id="mainContent" role="main">
+        <aside class="sidebar" id="sidebar" aria-label="Sidebar Filters">
+            <div class="sidebar-block">
+                <h3 class="sidebar-title">Competitions</h3>
+                <ul class="comp-list" id="competitionList">
+                    <!-- Rendered dynamically by app.js -->
+                </ul>
+            </div>
+            <div class="sidebar-block">
+                <h3 class="sidebar-title">Prediction Markets</h3>
+                <ul class="market-list" id="marketList">
+                    <!-- Rendered dynamically by app.js -->
+                </ul>
+            </div>
+        </aside>
+
+        <section class="content-area" id="viewArea" aria-live="polite">
+            <!-- Rendered dynamically by app.js -->
+        </section>
+    </main>
+
+    <footer class="app-footer" role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2026 Apex Analytics Platform. Purely informational football statistical analysis.</p>
+            <p class="disclaimer">Non-gambling educational & analytics service. All dataset entries are strictly demonstration records (DEMO).</p>
+        </div>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
