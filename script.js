@@ -348,15 +348,15 @@ function renderLeagueTables(container) {
 function renderAboutPage(container) {
   container.innerHTML = `
     <div class="about-page">
-      <h2>Apex Analytics Platform Architecture</h2>
+      2 Apex Analytics Platform Architecture
       <p>Apex Analytics is a high-performance football intelligence engine utilizing algorithmic predictive models, live form weighting, and statistical distribution frameworks.</p>
       <div class="architecture-highlights">
         <div class="arch-card">
-          <h4>xG Probability Model</h4>
+          4 xG Probability Model
           <p>Calculates expected goals for home and away sides using historic rolling form metrics.</p>
         </div>
         <div class="arch-card">
-          <h4>Live API Synchronization</h4>
+          4 Live API Synchronization
           <p>Connected directly to API-Sports endpoints for live fixture feeds and score tracking.</p>
         </div>
       </div>
@@ -375,6 +375,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       e.preventDefault();
       document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("active"));
       link.classList.add("active");
+      
+      // Update state tab from data-tab attribute
       state.activeTab = link.dataset.tab;
       
       if (state.activeTab === "todays-tips") state.activeDate = "2026-09-08";
@@ -423,6 +425,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  // Initial render with base dataset
+  filterAndRender();
+
   // Attempt API-Sports live fetch
   const apiMatches = await fetchMatches();
   if (apiMatches && apiMatches.length > 0) {
@@ -458,8 +463,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       statusBadge.textContent = 'LIVE API';
       statusBadge.style.backgroundColor = '#10B981';
     }
-  }
 
-  // Initial render
-  filterAndRender();
+    // Force UI re-render so live matches display immediately
+    filterAndRender();
+  }
 });
